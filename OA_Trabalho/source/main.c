@@ -34,6 +34,7 @@ int main (){
 
 	printf("Quantas linhas o arquivo possui?\n");
 	scanf("%d", &num);
+	num = num*2;
 
 	char linha[54];
 	char indice_prim[num][8];
@@ -78,6 +79,12 @@ int main (){
 	          l++;
 	        }
 		}
+		for(i=0 ; i<6; i++){
+			matricula_texto[k][i] = linha[i+42];
+			indice_prim[k][i+l] = linha[i+42];
+		}
+
+
 		memset(linha, ' ', sizeof(linha));
 		
 	}
