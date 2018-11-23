@@ -1,0 +1,16 @@
+Trabalho 1 de Organização de Arquivos
+Professor: Camilo Chang Dorea
+Gabriel Matheus da Rocha de Oliveira, 17/0103498
+Guilherme Braga Pinto, 17/0162290
+Last Update: 03/11/2018
+UnB- CIC
+
+>Para se compilar o arquivo, com o terminal aberto na pasta "src", digite:
+
+"make"
+
+>Para se executar, digite:
+
+"./index"
+
+>Ao se executar, siga as instruções que estão no terminal, respondendo o que é necessário para o bom funcionamento do programa, com base na lista1 e na lista2.
