@@ -27,9 +27,11 @@ UnB- CIC
 int main (){
 
 	FILE *fp;
+	FILE *fpw;
 	BTree *tree;
 	fp = fopen ("lista.txt", "r");
-	int Linha_Index = 1;
+	fpw = fopen ("Resultado_Index.txt", "w");
+	int Linha_Index = 0;
 	int option;
 
 	int linhas, i, k, num;
@@ -66,10 +68,10 @@ int main (){
 		fgets(linha, 108, fp);
 		linha[108] = '\0';
 
-		for(i = 0; i<108; i++){
-			printf("%c", linha[i]);
-		}
-		printf("\n");
+		// for(i = 0; i<108; i++){
+		// 	printf("%c", linha[i]);
+		// }
+		// printf("\n");
 		
 		memset(nome_texto, ' ', sizeof(nome_texto));
 
@@ -91,18 +93,21 @@ int main (){
 	        }
 		}
 		for(i=0 ; i<6; i++){
-			matricula_texto[k][i] = linha[i+42];
-			indice_prim[k][i+l] = linha[i+42];
+			matricula_texto[k][i] = linha[i+41];
+			indice_prim[k][i+l] = linha[i+41];
 		}
-		indice_prim[k][7] = '\0';
+		indice_prim[k][8] = '\0';
 		pos = Insert_btree(tree, indice_prim[k], Linha_Index);
 		Linha_Index++;	
+		printf("Chave: %s representa linha: %d\n", indice_prim[k], Linha_Index);
+		fprintf(fpw, "Chave: %s representa linha: %d\n", indice_prim[k], Linha_Index);
 		
 	}
 
 //--------------------------------------------------------------------------------------------
 
 	//PRINTANDO OS INDICES PRIMARIOS
+	
 	printf("\n");
 	
 	for(k = 0; k<num; k++){
@@ -114,7 +119,7 @@ int main (){
 		printf("\n");
 	}
 
-	char Chave[7];
+	char Chave[8];
 
 	printf("\033[1;34m");
 
@@ -175,19 +180,20 @@ if(option == 4){
 
 }
 
-
 /*
-	for(k = 0; k<num; k++){
-		for(i=0; i<41; i++){
 
+	for(k = 0; k<num; k++){
+		printf("nome:\n");
+		for(i=0; i<41; i++){
 			printf("%c", nome_texto[k][i]);
 
 		}
 		printf("\n");
 	}
 
-	/*
+	
 	for(k = 0; k<num; k++){
+		printf("matricula:\n");
 		for(i=0; i<7; i++){
 
 			printf("%c", matricula_texto[k][i]);
@@ -197,6 +203,7 @@ if(option == 4){
 	}
 
 	for(k = 0; k<num; k++){
+		printf("curso:\n");
 		for(i=0; i<4; i++){
 
 			printf("%c", curso_texto[k][i]);
@@ -204,8 +211,13 @@ if(option == 4){
 		}
 		printf("\n");
 	}
-		*/
+
+*/
+
 btree_delete_h(tree);
+fclose(fp);
+fclose(fpw);
+
   return 0;
 }
 
