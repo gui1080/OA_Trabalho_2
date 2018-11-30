@@ -29,9 +29,17 @@ UnB- CIC
  * @param int opt - Descreve qual menu se mostrará.
  */
 
+struct Aluno
+{
+	char nome[30];
+	char matricula[5];
+    char Curso[2];
+    char Turma;
+};
+
 typedef struct Dados {
 	char Chave[8];
-	int linha;
+	struct Aluno pessoas;
 } Dados;
 
 typedef struct Nodulo {
@@ -57,9 +65,9 @@ BTree* New_tree(int order);
 
 Nodulo* New_node(int order, bool Folha);
 
-node_position Insert_btree(BTree* bt, char *Chave, int linha);
+node_position Insert_btree(BTree* bt, char *Chave, struct Aluno pessoas);
 
-Dados* New_data(char *Chave, int linha); 
+Dados* New_data(char *Chave, struct Aluno pessoas); 
 
 void Split_btree(Nodulo *node, int pos, int order); 
 

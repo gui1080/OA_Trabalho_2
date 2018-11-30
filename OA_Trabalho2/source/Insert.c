@@ -1,10 +1,10 @@
 #include "headers.h"
 
-node_position Insert_btree(BTree* bt, char *Chave, int linha) {
+node_position Insert_btree(BTree* bt, char *Chave, struct Aluno pessoas) {
 
 Nodulo *raiz = bt->raiz;
 
-Dados *pair = New_data(Chave, linha);
+Dados *pair = New_data(Chave, pessoas);
 
 if (raiz->n_Chaves == 2*bt->order -1) {
 
@@ -22,11 +22,14 @@ bt->raiz = new_raiz;
   }
 }
 
-Dados* New_data(char* Chave, int linha) {
+Dados* New_data(char* Chave, struct Aluno pessoas) {
   Dados *p = malloc(sizeof(Dados));
 
   strcpy(p->Chave, Chave);
-  p->linha = linha;
+  strcpy(p->pessoas.nome, pessoas.nome);
+  strcpy(p->pessoas.matricula, pessoas.matricula);
+  strcpy(p->pessoas.Curso, pessoas.Curso);
+  pessoas.Turma = pessoas.Turma;
 
   return p;
 }

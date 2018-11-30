@@ -178,7 +178,7 @@ node_position Find_node_max(Nodulo *node) {
 }
 
 Dados* Copy_data(Dados *p) {
-  Dados *new = New_data(p->Chave, p->linha);
+  Dados *new = New_data(p->Chave, p->pessoas);
   return new;
 }
 
