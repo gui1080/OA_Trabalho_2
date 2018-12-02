@@ -56,6 +56,7 @@ int main (){
 	char nome_texto[num][30];
 	char matricula_texto[num][5];
 	char Curso_texto[num][2];
+	char turma_aux;
 	node_position pos;
 
 	int l = 0;
@@ -106,12 +107,22 @@ int main (){
 			indice_prim[k][i+l] = linha[i+41];
 		}
 		matricula_texto[k][4] = '\0';
-		pessoas.Turma = linha[55];
+		pessoas.Turma = linha[52];
 		nome_texto[k][29] = '\0';
 
-		strcpy(pessoas.nome, nome_texto[k]);
-		strcpy(pessoas.matricula, matricula_texto[k]);
-		strcpy(pessoas.Curso, Curso_texto[k]); 
+		for(i = 0; i < 30; i++){
+			pessoas.nome[i] = nome_texto[k][i];
+		}
+		for(i=0 ; i<5; i++){
+			pessoas.matricula[i] = matricula_texto[k][i]; 
+		}
+		for(i=0 ; i<2; i++){
+			pessoas.Curso[i] = Curso_texto[k][i];
+		}
+
+		//strcpy(pessoas.nome, nome_texto[k]);
+		//strcpy(pessoas.matricula, matricula_texto[k]);
+		//strcpy(pessoas.Curso, Curso_texto[k]); 
 
 		indice_prim[k][7] = '\0';
 		//pessoas.nome[30] = '\0';
@@ -119,17 +130,25 @@ int main (){
 
 		printf("Nome: %s\n", pessoas.nome);
 		printf("Matricula: %s\n", pessoas.matricula);
-		printf("Curso: %s\n", pessoas.Curso);
+		printf("Curso: %c%c\n", pessoas.Curso[0], pessoas.Curso[1]);
 		printf("Turma: %c\n", pessoas.Turma);
+		pessoas.Curso[2] = ' ';
+
+		if(turma_aux == 'A'){
+			pessoas.Turma = 'A';
+		}
+		else{
+			pessoas.Turma == 'B';
+		}
 
 		pos = Insert_btree(tree, indice_prim[k], pessoas);
 		fprintf(fpw, "Chave: %s representa as seguintes informações:\n", indice_prim[k]);
-		fprintf(fpw, "Nome: %s Matricula: %sCurso: %sTurma: %c\n",pessoas.nome, pessoas.matricula, pessoas.Curso, pessoas.Turma);
+		fprintf(fpw, "Nome: %s Matricula: %sCurso: %sTurma: %c\n",pessoas.nome, pessoas.matricula, pessoas.Curso, turma_aux);
 		//Linha_Index++;
 		
 	}
-fclose(fp);
-fclose(fpw);
+	fclose(fp);
+	close(fpw);
 //--------------------------------------------------------------------------------------------
 
 	//PRINTANDO OS INDICES PRIMARIOS
@@ -147,6 +166,8 @@ fclose(fpw);
 	char Chave[7];
 	int linha_aux;
 
+//--------------------------------------------------------------------------------------------
+	
 	printf("\033[1;34m");
 
 
