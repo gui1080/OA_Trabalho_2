@@ -6,5 +6,7 @@
   Em seu terminal de Linux:
   
   Para compilar, digite "make".
-  Para limpar arquivos, digite "make clean". 
+  
+  Para limpar arquivos, digite "make clean".
+  
   Para rodar o programa, digite "./Index".
