@@ -14,7 +14,7 @@
 #include "headers.h"
 #include <time.h>
 #include <string.h>
-#define max_Chaves = 200;
+#define max_Chaves 200
 
 /*
 Feito por:
@@ -40,6 +40,8 @@ int main (){
 	fpw2 = fopen("Resultado_Indices_ArvoreB", "w");
 	int Linha_Index = 1;
 	int option;
+	int chaves_novas[max_Chaves][8];
+	int conta_chaves_novas = 0;
 
 	int linhas, i, k, num;
 
@@ -61,7 +63,7 @@ int main (){
 	char Curso_texto[num][3];
 	char turma_aux[num][2];
 	node_position pos;
-	int linha_nova = 0;
+	
 
 	int l = 0;
 
@@ -226,7 +228,11 @@ int main (){
 			Escreve_Menu(5);
 			scanf("%s", Chave);
 			getchar();
-			Chave[7] = '\0';  
+
+			for(k=0; k<8; k++){
+				chaves_novas[conta_chaves_novas][k] = Chave[k];
+			}
+			//Chave[7] = '\0';  
 
 			Escreve_Menu(6);  //adicionaremos um registro
       		printf("Nome:\n");
@@ -267,7 +273,7 @@ int main (){
 			// }
 			// 	}
 			//fclose(fpw);
-			linha_nova++;
+			conta_chaves_novas++;
 			// !!!!!!!!!!!!!!!!!!!!!!!!
 
 		}
@@ -306,6 +312,15 @@ int main (){
 
 		
 				fprintf(fpw2, "\n"); 
+			}
+
+			for(k = 0; k<conta_chaves_novas; k++){
+				for(i=0; i<7; i++){
+
+					fprintf(fpw2, "%c", chaves_novas[k][i]);
+				}
+		
+				fprintf(fpw2, "\n");	
 			}
 		//printar novos registros tambem
 
