@@ -32,9 +32,9 @@ UnB- CIC
 struct Aluno
 {
 	char nome[30];
-	char matricula[5];
-    char Curso[2];
-    char Turma;
+	char matricula[6];
+    char Curso[3];
+    char Turma[2];
 };
 
 typedef struct Dados {
@@ -65,11 +65,11 @@ BTree* New_tree(int order);
 
 Nodulo* New_node(int order, bool Folha);
 
-node_position Insert_btree(BTree* bt, char *Chave, struct Aluno pessoas);
+node_position Insert_arvoreb(BTree* bt, char *Chave, struct Aluno pessoas);
 
 Dados* New_data(char *Chave, struct Aluno pessoas); 
 
-void Split_btree(Nodulo *node, int pos, int order); 
+void Split_arvoreb(Nodulo *node, int pos, int order); 
 
 void Deslocate_keys_up(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
 
@@ -79,21 +79,21 @@ void Deslocate_children_up(Nodulo *to, Nodulo *from, int beg, int end, int paddi
 
 void Deslocate_children_down(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
 
-node_position Insert_btree_nonfull(Nodulo * node, Dados *pair, int order);
+node_position Insert_arvoreb_nonfull(Nodulo * node, Dados *pair, int order);
 
 node_position New_node_position(Nodulo *node, int index);
 
 bool Find_node_Chave(Nodulo *node, char* Chave, int *pos);
 
-node_position btree_find(BTree* bt,char* Chave);
+node_position arvoreb_find(BTree* bt,char* Chave);
 
-node_position Find_node_btree(Nodulo* node, char *Chave);
+node_position Find_node_arvoreb(Nodulo* node, char *Chave);
 
 int compara_string(char *string1, char* string2);
 
-node_position btree_remove(BTree* bt, char* Chave);
+node_position arvoreb_remove(BTree* bt, char* Chave);
 
-node_position Remove_node_btree(Nodulo *node, char *Chave, int order);
+node_position Remove_no_arvoreb(Nodulo *node, char *Chave, int order);
 
 node_position Find_node_min(Nodulo *node); 
 
@@ -103,8 +103,8 @@ Dados* Copy_data(Dados *p);
 
 void Escreve_Menu(int opt);
 
-void btree_delete_s(BTree *bt);
+void arvoreb_delete_s(BTree *bt);
 
-void btree_delete_h(BTree *bt);
+void arvoreb_delete_h(BTree *bt);
 
 void Delete_node(Nodulo *node);

@@ -1,8 +1,8 @@
 #include "headers.h"
 
-node_position btree_remove(BTree* bt, char* Chave) {
+node_position arvoreb_remove(BTree* bt, char* Chave) {
 
-  node_position pos = Remove_node_btree(bt->raiz, Chave, bt->order);
+  node_position pos = Remove_no_arvoreb(bt->raiz, Chave, bt->order);
   if (bt->raiz->n_Chaves == 0 && pos.node != NULL && pos.node != bt->raiz) {
 
     bt->raiz = bt->raiz->filhos[0];
@@ -11,8 +11,8 @@ node_position btree_remove(BTree* bt, char* Chave) {
   return pos;
 }
 
-node_position Remove_node_btree(Nodulo *node, char *Chave, int order) {
-
+node_position Remove_no_arvoreb(Nodulo *node, char *Chave, int order) {
+ 
   int pos;
   if (Find_node_Chave(node, Chave, &pos)) {
 
@@ -38,7 +38,7 @@ node_position Remove_node_btree(Nodulo *node, char *Chave, int order) {
 
         node->Chaves[pos] = p;
 
-        Remove_node_btree(left, p->Chave, order);
+        Remove_no_arvoreb(left, p->Chave, order);
         return New_node_position(node, pos);
       }
       else if (right->n_Chaves >= order) {
@@ -51,7 +51,7 @@ node_position Remove_node_btree(Nodulo *node, char *Chave, int order) {
         Dados *p = Copy_data(min.node->Chaves[min.index]);
         node->Chaves[pos] = p;
 
-        Remove_node_btree(right, p->Chave, order);
+        Remove_no_arvoreb(right, p->Chave, order);
         return New_node_position(node, pos);
       }
       else {
@@ -68,7 +68,7 @@ node_position Remove_node_btree(Nodulo *node, char *Chave, int order) {
         Deslocate_children_up(node, node, pos, node->n_Chaves-1, 1, 2);
         node->n_Chaves--;
 
-        return Remove_node_btree(left, Chave, order);
+        return Remove_no_arvoreb(left, Chave, order);
       }
     }
   }
@@ -100,26 +100,26 @@ node_position Remove_node_btree(Nodulo *node, char *Chave, int order) {
         node_position max = Find_node_max(left);
         Dados *p = Copy_data(max.node->Chaves[max.index]);
 
-        Remove_node_btree(left, p->Chave, order);
+        Remove_no_arvoreb(left, p->Chave, order);
 
-        Insert_btree_nonfull(right, node->Chaves[pos-1], order);
+        Insert_arvoreb_nonfull(right, node->Chaves[pos-1], order);
 
         node->Chaves[pos-1] = p;
 
-        return Remove_node_btree(right, Chave, order);
+        return Remove_no_arvoreb(right, Chave, order);
       }
       else if (right->n_Chaves >= order) {
 
         node_position min = Find_node_min(right);
         Dados *p = Copy_data(min.node->Chaves[min.index]);
 
-        Remove_node_btree(right, p->Chave, order);
+        Remove_no_arvoreb(right, p->Chave, order);
 
-        Insert_btree_nonfull(left, node->Chaves[pos-1], order);
+        Insert_arvoreb_nonfull(left, node->Chaves[pos-1], order);
 
         node->Chaves[pos-1] = p;
 
-        return Remove_node_btree(left, Chave, order);
+        return Remove_no_arvoreb(left, Chave, order);
       }
       else {
 
@@ -133,27 +133,27 @@ node_position Remove_node_btree(Nodulo *node, char *Chave, int order) {
         Delete_node(right);
 
         left->n_Chaves = 2*order-1;
-        return Remove_node_btree(left, Chave, order);
+        return Remove_no_arvoreb(left, Chave, order);
       }
     }
 
-    return Remove_node_btree(next, Chave, order);
+    return Remove_no_arvoreb(next, Chave, order);
   }
 }
 
-void btree_delete_s(BTree *bt) {
+void arvoreb_delete_s(BTree *bt) {
 
   while (bt->raiz->n_Chaves > 0) {
 
-    btree_remove(bt, bt->raiz->Chaves[0]->Chave);
+    arvoreb_remove(bt, bt->raiz->Chaves[0]->Chave);
   }
 
   Delete_node(bt->raiz);
 }
 
-void btree_delete_h(BTree *bt) {
+void arvoreb_delete_h(BTree *bt) {
 
-  btree_delete_s(bt);
+  arvoreb_delete_s(bt);
   free(bt);
 }
 

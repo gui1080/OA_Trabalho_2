@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "headers.h"
 #include <time.h>
+#include <string.h>
 #define max_Chaves = 200;
 
 /*
@@ -29,24 +30,26 @@ int main (){
 
 	FILE *fp;
 	FILE *fpw;
+	FILE *fpw2;
 	BTree *tree;
 
     struct Aluno pessoas;
 
 	fp = fopen ("lista.txt", "r");
 	fpw = fopen ("Resultado_Index.txt", "w");
+	fpw2 = fopen("Resultado_Indices_ArvoreB", "w");
 	int Linha_Index = 1;
 	int option;
 
 	int linhas, i, k, num;
 
-	printf("Quantas linhas o arquivo possui?\n");
+	Escreve_Menu(1);
 	scanf("%d", &num);
 	//num = num*2;
 
 	int order;
 
-	printf("Digite a ordem da sua B-Tree: ");
+	Escreve_Menu(2);
 	scanf("%d%*c", &order);
 
 	tree = New_tree(order);
@@ -54,17 +57,19 @@ int main (){
 	char linha[108];
 	char indice_prim[num][8];
 	char nome_texto[num][30];
-	char matricula_texto[num][5];
-	char Curso_texto[num][2];
-	char turma_aux;
+	char matricula_texto[num][6];
+	char Curso_texto[num][3];
+	char turma_aux[num][2];
 	node_position pos;
+	int linha_nova = 0;
 
 	int l = 0;
 
 	for(k=0; k<num ; k++){
 	    for(i = 0; i<8; i++){
         	indice_prim[k][i] = ' ';     
-    	 }for(i = 0; i < 5; i ++){
+    	 }
+    	 for(i = 0; i < 5; i ++){
     	 	matricula_texto[k][i] = ' ';
     	 }
     	 for(i = 0; i < 30; i++){
@@ -85,11 +90,11 @@ int main (){
 		
 		//memset(nome_texto, ' ', sizeof(nome_texto));
 
-		//for(i=0 ; i<5; i++){
-		//	matricula_texto[k][i] = ' ';
-		//}
+		for(i=0 ; i<6; i++){
+			matricula_texto[k][i] = ' ';
+        }
 
-		for(i = 0; i < 2 ; i++){
+		for(i = 0; i < 3 ; i++){
         Curso_texto[k][i] = linha[i+48];                            //definimos o curso 
         }
         Curso_texto[k][2] = '\0';
@@ -106,8 +111,10 @@ int main (){
 			matricula_texto[k][i] = linha[i+41];
 			indice_prim[k][i+l] = linha[i+41];
 		}
-		matricula_texto[k][4] = '\0';
-		pessoas.Turma = linha[52];
+		matricula_texto[k][5] = '\0';
+		turma_aux[k][0] = linha[52];
+		turma_aux[k][1] = '\0';
+
 		nome_texto[k][29] = '\0';
 
 		for(i = 0; i < 30; i++){
@@ -116,39 +123,51 @@ int main (){
 		for(i=0 ; i<5; i++){
 			pessoas.matricula[i] = matricula_texto[k][i]; 
 		}
-		for(i=0 ; i<2; i++){
+		pessoas.matricula[5] = '\0';
+		for(i=0 ; i<3; i++){
 			pessoas.Curso[i] = Curso_texto[k][i];
 		}
+		strcpy(pessoas.Turma, turma_aux[k]);
+		
+		//pessoas.Turma[0] = turma_aux[k][0];
+		//pessoas.Turma[1] = turma_aux[k][1];
+
+//		if(turma_aux[0] == 'A'){
+//			pessoas.Turma[0] = 'A';
+//		}
+//		else{
+//			pessoas.Turma[0] = 'B';
+//		}
+		
+		pessoas.Curso[3] = '\0';
 
 		//strcpy(pessoas.nome, nome_texto[k]);
-		//strcpy(pessoas.matricula, matricula_texto[k]);
+		//strcpy(pessoas.matricula, matricula_texto[k]); 
 		//strcpy(pessoas.Curso, Curso_texto[k]); 
 
 		indice_prim[k][7] = '\0';
 		//pessoas.nome[30] = '\0';
 		//pessoas.matricula[5] = '\0';
+		//pessoas.Curso[2] = ' ';
 
+		printf("!!!!!PESSOAS.TURMA = %s!!!!", pessoas.Turma);
+		
 		printf("Nome: %s\n", pessoas.nome);
 		printf("Matricula: %s\n", pessoas.matricula);
-		printf("Curso: %c%c\n", pessoas.Curso[0], pessoas.Curso[1]);
-		printf("Turma: %c\n", pessoas.Turma);
-		pessoas.Curso[2] = ' ';
+		printf("Curso: %s\n", pessoas.Curso);
+		printf("Turma: %s\n", turma_aux[k]);
+		
 
-		if(turma_aux == 'A'){
-			pessoas.Turma = 'A';
-		}
-		else{
-			pessoas.Turma == 'B';
-		}
 
-		pos = Insert_btree(tree, indice_prim[k], pessoas);
-		fprintf(fpw, "Chave: %s representa as seguintes informações:\n", indice_prim[k]);
-		fprintf(fpw, "Nome: %s Matricula: %sCurso: %sTurma: %c\n",pessoas.nome, pessoas.matricula, pessoas.Curso, turma_aux);
+
+		pos = Insert_arvoreb(tree, indice_prim[k], pessoas);
+		fprintf(fpw, "Chave: %s representa as seguintes informações:\n\n", indice_prim[k]);
+		fprintf(fpw, "Nome: %s Matricula: %sCurso: %s Turma: %s\n",pessoas.nome, pessoas.matricula, pessoas.Curso, pessoas.Turma);
 		//Linha_Index++;
 		
 	}
 	fclose(fp);
-	close(fpw);
+	fclose(fpw);
 //--------------------------------------------------------------------------------------------
 
 	//PRINTANDO OS INDICES PRIMARIOS
@@ -160,7 +179,7 @@ int main (){
 			printf("%c", indice_prim[k][i]);
 
 		}
-		printf("\n");
+		printf("\n"); 
 	}
 
 	char Chave[7];
@@ -173,48 +192,43 @@ int main (){
 
 	while(1){
 
-  	printf("\n\nO que deseja fazer agora?\n\n");
-	
-	printf("1 - Pesquisar Registro\n");
-  	printf("2 - Adicionar Registro\n");
-  	printf("3 - Excluir Registro\n");
-  	printf("4 - Salvar e sair do programa\n");
+		Escreve_Menu(3);
 
-	printf("\033[0m");	
-	scanf("%d", &option);
+		printf("\033[0m");	
+		scanf("%d", &option);
 
-	if(option == 1){
+		if(option == 1){
 
-		printf("Digite uma CHAVE para pesquisar: ");
-		scanf("%s", Chave);
-		Chave[7] = '\0'; 
-		pos = btree_find(tree, Chave);
+			Escreve_Menu(4);
+			scanf("%s", Chave);
+			Chave[7] = '\0'; 
+			pos = arvoreb_find(tree, Chave);
 
 		if (pos.node == NULL) {
 
 			printf("\033[0;31m");
 			printf("\nA CHAVE %s não foi encontrada na B-Tree\n", Chave);
 			printf("\033[0m");
-		}
+			}
 		else {
 
 			printf("\033[0;32m");
-			printf("\nA CHAVE %s foi encontrada associada as informações:\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %c\n",
+			printf("\nA CHAVE %s foi encontrada associada as informações:\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",
 			         Chave, pos.node->Chaves[pos.index]->pessoas.nome, pos.node->Chaves[pos.index]->pessoas.matricula,
 			         pos.node->Chaves[pos.index]->pessoas.Curso, pos.node->Chaves[pos.index]->pessoas.Turma);
 			printf("\033[0m");
+			}
+
 		}
 
-	}
-
-	if(option == 2){
-		//fpw = fopen ("Resultado_Index.txt", "w");
-		printf("Digite uma CHAVE que será associada as informações\n");
+		if(option == 2){
+			//fpw = fopen ("Resultado_Index.txt", "w");
+			Escreve_Menu(5);
 			scanf("%s", Chave);
 			getchar();
 			Chave[7] = '\0';  
 
-			printf("Por favor, digite os seguintes dados:\n");  //adicionaremos um registro
+			Escreve_Menu(6);  //adicionaremos um registro
       		printf("Nome:\n");
       		//pessoas.nome[strlen(pessoas.nome)] = ' ';
       		memset(pessoas.nome, ' ', sizeof(pessoas.nome));
@@ -231,61 +245,74 @@ int main (){
       		printf("%s\n", pessoas.Curso);
       		pessoas.Curso[2] = '\0';
       		printf("Turma:\n");
-      		scanf("%c", &pessoas.Turma);
+      		scanf("%c", &pessoas.Turma[0]);
       		getchar();
-      		printf("%c", pessoas.Turma);
+      		printf("%s", pessoas.Turma);
 
-			pos = Insert_btree(tree, Chave, pessoas);
+			pos = Insert_arvoreb(tree, Chave, pessoas);
 			//Linha_Index++;	
 			//strcpy(indice_prim[Linha_Index], Chave);
 			
-		// 	int cont;
-		// 	for(cont = 0; cont < Linha_Index; cont++){
-		// 	pos = btree_find(tree, indice_prim[cont]);
-		// 	if (pos.node == NULL) {
-		// 	printf("A CHAVE %s não foi encontrada na B-Tree\n", indice_prim[cont]);
-		// }
-		// else {
-		// 	printf("A CHAVE %s foi encontrada associada a linha '%d'\n",
-		// 	         indice_prim[cont], pos.node->Chaves[pos.index]->linha);
-		// 	fprintf(fpw, "A CHAVE %s foi encontrada associada a linha '%d'\n",
-		// 	         indice_prim[cont], pos.node->Chaves[pos.index]->linha);
-		// }
-		// 	}
+			// 	int cont;
+			// 	for(cont = 0; cont < Linha_Index; cont++){
+			// 	pos = arvoreb_find(tree, indice_prim[cont]);
+			// 	if (pos.node == NULL) {
+			// 	printf("A CHAVE %s não foi encontrada na B-Tree\n", indice_prim[cont]);
+			// }
+			// else {
+			// 	printf("A CHAVE %s foi encontrada associada a linha '%d'\n",
+			// 	         indice_prim[cont], pos.node->Chaves[pos.index]->linha);
+			// 	fprintf(fpw, "A CHAVE %s foi encontrada associada a linha '%d'\n",
+			// 	         indice_prim[cont], pos.node->Chaves[pos.index]->linha);
+			// }
+			// 	}
 			//fclose(fpw);
+			linha_nova++;
+			// !!!!!!!!!!!!!!!!!!!!!!!!
 
-	}
+		}
 
 
-	if(option == 3){
+		if(option == 3){
 		//fpw = fopen ("Resultado_Index.txt", "w");
-		printf("Digite uma CHAVE para remover: ");
+		Escreve_Menu(7);
 		scanf("%s", Chave);
 		Chave[7] = '\0'; 
-		pos = btree_remove(tree, Chave);
+		pos = arvoreb_remove(tree, Chave);
 		if (pos.node == NULL) {
 
 			printf("\033[0;31m");
 			printf("\nA CHAVE %s não foi encontrada na B-Tree\n", Chave);
 			printf("\033[0m");
 			//fprintf(fpw, "A CHAVE %s não foi encontrada na B-Tree\n", Chave);
-		}
+			}
 		else {
 
 			printf("\033[0;32m");
 			printf("\nA CHAVE %s foi removida com sucesso\n", Chave);
 			printf("\033[0m");
 			//fprintf(fpw, "A CHAVE %s foi removida com sucesso\n", Chave);
-		}
+			}
 
 		//fclose(fpw);
-	}
+		}
 		
-if(option == 4){
-	break;
-}
+		if(option == 4){
 
-}
+			for(k = 0; k<num; k++){
+		
+
+				fprintf(fpw2, "%s", indice_prim[k]);
+
+		
+				fprintf(fpw2, "\n"); 
+			}
+		//printar novos registros tambem
+
+			break;
+		}
+
+	}
 
 /*
 	for(k = 0; k<num; k++){
@@ -318,8 +345,9 @@ if(option == 4){
 		*/
 	
 		
-btree_delete_h(tree);
-  return 0;
+   	arvoreb_delete_h(tree);
+  	fclose(fpw2);
+  	return 0;
 }
 
 

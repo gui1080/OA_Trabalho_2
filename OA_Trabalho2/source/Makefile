@@ -1,6 +1,6 @@
 IDIR =../include
 CC=gcc
-CFLAGS=-I$(IDIR)
+CFLAGS=-I$(IDIR) -ftest-coverage -fprofile-arcs
 
 ODIR=obj
 LDIR =../lib
@@ -10,7 +10,7 @@ LIBS=-lm -g
 _DEPS = headers.h 
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o funcoes.o Insert.o Remove.o
+_OBJ = main.o funcoes.o Insere.o Remove.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

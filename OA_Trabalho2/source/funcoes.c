@@ -24,31 +24,34 @@ UnB
 void Escreve_Menu(int opt){
 	printf("\033[1;34m");
 	if(opt == 1){
-		printf("\n\n");
-  		printf("Lista criada com sucesso!\n");
-  		printf("O que deseja fazer agora?\n\n");
+
+    printf("Quantas linhas o arquivo possui?\n");
 	}
 
 	if(opt == 2){
-  		printf("1 - Adicionar Registro\n");
-  		printf("2 - Excluir Registro\n");
-  		printf("3 - Atualizar Registro\n");
-  		printf("4 - Salvar e sair do programa\n");
+      printf("Digite a ordem da sua B-Tree: ");
   	}
 
   	if(opt == 3){
- 		printf("Para ler a Lista 1, digite 0\n");
-        printf("Para ler a Lista 2, digite 1\n");              // Menus!
-        printf("Para intercalar Listas, digite 2\n");
+    printf("\n\nO que deseja fazer agora?\n\n");
+  
+    printf("1 - Pesquisar Registro\n");
+    printf("2 - Adicionar Registro\n");
+    printf("3 - Excluir Registro\n");
+    printf("4 - Salvar e sair do programa\n");
 	}
 	if(opt == 4){
-	  printf("O que deseja modificar?\n");
-      printf("1 - Matricula\n");
-      printf("2 - Nome\n");
-      printf("3 - Opção\n");
-      printf("4 - Turma\n");
-      printf("5 - Curso\n");
+      printf("Digite uma CHAVE para pesquisar: ");
 	}
+  if(opt == 5){
+      printf("Digite uma CHAVE que será associada as informações\n");
+  }
+  if(opt == 6){
+    printf("Por favor, digite os seguintes dados:\n");
+  }
+  if(opt == 7){
+    printf("Digite uma CHAVE para remover: ");
+  }
 	printf("\033[0m");	
 }
 
@@ -89,12 +92,12 @@ bool Find_node_Chave(Nodulo *node, char* Chave, int *pos) {
 
 }
 
-node_position btree_find(BTree* bt,char* Chave){
+node_position arvoreb_find(BTree* bt,char* Chave){
 
-  return Find_node_btree(bt->raiz, Chave);
+  return Find_node_arvoreb(bt->raiz, Chave);
 }
 
-node_position Find_node_btree(Nodulo* node, char *Chave){
+node_position Find_node_arvoreb(Nodulo* node, char *Chave){
 
   int pos;
   if (Find_node_Chave(node, Chave, &pos)) {
@@ -105,7 +108,7 @@ node_position Find_node_btree(Nodulo* node, char *Chave){
       return New_node_position(NULL, -1);
     }
     else {
-      return Find_node_btree(node->filhos[pos], Chave);
+      return Find_node_arvoreb(node->filhos[pos], Chave);
     }
   }
 }
