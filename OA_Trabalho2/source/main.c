@@ -31,6 +31,7 @@ int main (){
 	FILE *fp;
 	FILE *fpw;
 	FILE *fpw2;
+	FILE *fpresult;
 	BTree *tree;
 
     struct Aluno pessoas;
@@ -41,6 +42,7 @@ int main (){
 	fp = fopen ("lista.txt", "r");
 	fpw = fopen ("Resultado_Index.txt", "w");
 	fpw2 = fopen("Resultado_Indices_ArvoreB", "w");
+	fpresult = fopen("Resultado_dados", "w");
 	int Linha_Index = 1;
 	int option;
 
@@ -351,19 +353,49 @@ int main (){
 
 		
 				fprintf(fpw2, "\n"); 
-			}
+			} // printando indices
 
+			printf("\n\nArquivo no final da execução:\n\n");
 			
 			for(k = 0; k<conta_chaves_novas; k++){
 				for(i=0; i<7; i++){		
 					fprintf(fpw2, "%c", chaves_novas[k][i]);
 					
 				}
-				printf("Nova chave adicionada:\n");
-				printf("Nome: %s Matricula: %s Curso: %s Turma: %s\n",pessoas_novas[k].nome, pessoas_novas[k].matricula, pessoas_novas[k].Curso, pessoas_novas[k].Turma);
+				printf("Nova chave adicionada nesta execução:\n");
+				printf("Nome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",pessoas_novas[k].nome, pessoas_novas[k].matricula, pessoas_novas[k].Curso, pessoas_novas[k].Turma);
 				fprintf(fpw2, "\n");
 
-			}
+			} // printando novos indices e mostrando o que teve de novo
+
+			for(k = 0; k<num; k++){
+				for(i=0; i<8; i++){
+					Chave[i] = indice_prim[k][i];
+				}
+				Chave[7] = '\0';
+				pos = arvoreb_find(tree, Chave);
+				if((Chave[0] != 0) && (Chave[3] != 0)){ 
+					fprintf(fpresult, "\n\n%s\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",
+ 	            			Chave, pos.node->Chaves[pos.index]->pessoas.nome, pos.node->Chaves[pos.index]->pessoas.matricula,
+		        			pos.node->Chaves[pos.index]->pessoas.Curso, pos.node->Chaves[pos.index]->pessoas.Turma);
+				}
+
+			} // printando da arvore original
+
+			for(k = 0; k<conta_chaves_novas; k++){
+				for(i=0; i<8; i++){
+					Chave[i] = chaves_novas[k][i];
+				}
+				Chave[7] = '\0';
+				pos = arvoreb_find(tree, Chave);
+				if((Chave[0] != 0) && (Chave[3] != 0)){ 
+					fprintf(fpresult, "\n\n%s\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",
+ 	            			Chave, pos.node->Chaves[pos.index]->pessoas.nome, pos.node->Chaves[pos.index]->pessoas.matricula,
+		        			pos.node->Chaves[pos.index]->pessoas.Curso, pos.node->Chaves[pos.index]->pessoas.Turma);
+					fprintf(fpresult, "\n");
+				}
+			} // printando o que temos de novo
+
 //--------------------------------PRINTANDO AS CHAVES---------------------------------------
 
 
@@ -409,6 +441,7 @@ int main (){
 		
    	arvoreb_delete_h(tree);
   	fclose(fpw2);
+  	fclose(fpresult);
   	return 0;
 }
 
