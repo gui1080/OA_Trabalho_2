@@ -296,7 +296,32 @@ int main (){
 		//fpw = fopen ("Resultado_Index.txt", "w");
 		Escreve_Menu(7);
 		scanf("%s", Chave);
-		Chave[7] = '\0'; 
+		Chave[7] = '\0';
+
+		for(i=0; i<conta_chaves_novas; i++){
+			if((Chave[0] == chaves_novas[i][0]) && (Chave[1] == chaves_novas[i][1]) && (Chave[2] == chaves_novas[i][2])){
+				for(int z = 0; z<8; z++){
+					chaves_novas[i][z] = ' ';
+				}
+			memset(pessoas_novas[i].Curso, ' ', 3);
+			memset(pessoas_novas[i].Turma, ' ', 2);
+			memset(pessoas_novas[i].matricula, ' ', 6);
+			memset(pessoas_novas[i].nome, ' ', 30); 
+			conta_chaves_novas--;
+			}
+		}
+		 
+		
+		for(i=0; i<num; i++){
+			if((Chave[0] == indice_prim[i][0]) && (Chave[1] == indice_prim[i][1]) && (Chave[2] == indice_prim[i][2])){
+				for(int z = 0; z<8; z++){
+					indice_prim[i][z] = 0;
+				}
+			}
+		} 
+		
+		// ZERAMOS OS INDICES QUE RETIRAMOS
+
 		pos = arvoreb_remove(tree, Chave);
 		if (pos.node == NULL) {
 
@@ -328,15 +353,16 @@ int main (){
 				fprintf(fpw2, "\n"); 
 			}
 
-			printf("Novas chaves adicionadas:\n");
+			
 			for(k = 0; k<conta_chaves_novas; k++){
-				for(i=0; i<7; i++){
-
+				for(i=0; i<7; i++){		
 					fprintf(fpw2, "%c", chaves_novas[k][i]);
 					
 				}
+				printf("Nova chave adicionada:\n");
 				printf("Nome: %s Matricula: %s Curso: %s Turma: %s\n",pessoas_novas[k].nome, pessoas_novas[k].matricula, pessoas_novas[k].Curso, pessoas_novas[k].Turma);
-				fprintf(fpw2, "\n");	
+				fprintf(fpw2, "\n");
+
 			}
 //--------------------------------PRINTANDO AS CHAVES---------------------------------------
 
