@@ -34,14 +34,15 @@ int main (){
 	BTree *tree;
 
     struct Aluno pessoas;
+    struct Aluno pessoas_novas[max_Chaves];
+    int conta_chaves_novas = 0;
+    int chaves_novas[max_Chaves][8];
 
 	fp = fopen ("lista.txt", "r");
 	fpw = fopen ("Resultado_Index.txt", "w");
 	fpw2 = fopen("Resultado_Indices_ArvoreB", "w");
 	int Linha_Index = 1;
 	int option;
-	int chaves_novas[max_Chaves][8];
-	int conta_chaves_novas = 0;
 
 	int linhas, i, k, num;
 
@@ -246,19 +247,24 @@ int main (){
       		memset(pessoas.nome, ' ', sizeof(pessoas.nome));
       		scanf("%[^\n]", pessoas.nome);            // coletamos informaões e a atribuimos à uma estrutura auxiliar
       		getchar();
+      		strcpy(pessoas_novas[conta_chaves_novas].nome, pessoas.nome);
       		printf("%s\n", pessoas.nome);
       		printf("Matricula\n");
       		scanf("%[^\n]", pessoas.matricula);
       		getchar();
+      		strcpy(pessoas_novas[conta_chaves_novas].matricula, pessoas.nome);
       		printf("%s\n", pessoas.matricula);
       		printf("Curso\n");
       		scanf("%s", pessoas.Curso);
       		getchar();
+      		strcpy(pessoas_novas[conta_chaves_novas].Curso, pessoas.Curso);
       		printf("%s\n", pessoas.Curso);
       		pessoas.Curso[2] = '\0';
+      		pessoas_novas[conta_chaves_novas].Curso[2] = '\0';
       		printf("Turma:\n");
       		scanf("%c", &pessoas.Turma[0]);
       		getchar();
+      		strcpy(pessoas_novas[conta_chaves_novas].Turma, pessoas.Turma);
       		printf("%s", pessoas.Turma);
 
 			pos = Insert_arvoreb(tree, Chave, pessoas);
@@ -322,12 +328,14 @@ int main (){
 				fprintf(fpw2, "\n"); 
 			}
 
+			printf("Novas chaves adicionadas:\n");
 			for(k = 0; k<conta_chaves_novas; k++){
 				for(i=0; i<7; i++){
 
 					fprintf(fpw2, "%c", chaves_novas[k][i]);
+					
 				}
-		
+				printf("Nome: %s Matricula: %s Curso: %s Turma: %s\n",pessoas_novas[k].nome, pessoas_novas[k].matricula, pessoas_novas[k].Curso, pessoas_novas[k].Turma);
 				fprintf(fpw2, "\n");	
 			}
 //--------------------------------PRINTANDO AS CHAVES---------------------------------------
