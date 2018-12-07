@@ -38,7 +38,7 @@ struct Aluno
 };
 
 typedef struct Dados {
-	char Chave[8];
+	char Chave[9];
 	struct Aluno pessoas;
 } Dados;
 

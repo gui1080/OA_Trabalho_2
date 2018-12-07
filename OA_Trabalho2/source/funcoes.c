@@ -116,18 +116,21 @@ node_position Find_node_arvoreb(Nodulo* node, char *Chave){
 int compara_string(char *string1, char* string2){
 int result;
 
+//printf("string 1: %s\nstring 2: %s\n\n", string1, string2);
 if (strcmp(string1, string2) == 0){
   return 0;                   //~inválido caso as duas strings sejam iguais
 }
 
-for(int i = 0; i < 7; i++){
+for(int i = 0; i < 8; i++){
 
   if(string1[i] > string2[i]){                  // comparamos  as strings por posição, se são diferentes a função para
-    result = 1;                          // para cada caso, há um retorno diferente 
+    result = 1;    
+    //printf("string 1 é maior\n\n");                      // para cada caso, há um retorno diferente 
     break;
     //return 1;
   }if(string1[i] < string2[i]){
     result = 2;
+     //printf("string 2 é maior\n\n");  
     break;
     //return 2;
   }

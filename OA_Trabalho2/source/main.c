@@ -152,7 +152,7 @@ int main (){
 		//strcpy(pessoas.matricula, matricula_texto[k]); 
 		//strcpy(pessoas.Curso, Curso_texto[k]); 
 
-		indice_prim[k][7] = '\0';
+		indice_prim[k][8] = '\0';
 		//pessoas.nome[30] = '\0';
 		//pessoas.matricula[5] = '\0';
 		//pessoas.Curso[2] = ' ';
@@ -167,7 +167,7 @@ int main (){
 		
 
 
-
+		printf("o indice e: %s\n", indice_prim[k]);
 		pos = Insert_arvoreb(tree, indice_prim[k], pessoas);
 		fprintf(fpw, "Chave: %s representa as seguintes informações:\n\n", indice_prim[k]);
 		fprintf(fpw, "Nome: %s\nMatricula:%s\nCurso: %s\nTurma: %s\n\n",pessoas.nome, pessoas.matricula, pessoas.Curso, pessoas.Turma);
@@ -190,7 +190,7 @@ int main (){
 		printf("\n"); 
 	}
 
-	char Chave[7];
+	char Chave[8];
 	int linha_aux;
 
 //--------------------------------MENU---------------------------------------
@@ -211,7 +211,8 @@ int main (){
 
 			Escreve_Menu(4);
 			scanf("%s", Chave);
-			Chave[7] = '\0'; 
+			Chave[8] = '\0'; 
+			printf("chave a ser buscada: %s\n", Chave);
 			pos = arvoreb_find(tree, Chave);
 
 		if (pos.node == NULL) {
@@ -299,7 +300,7 @@ int main (){
 		//fpw = fopen ("Resultado_Index.txt", "w");
 		Escreve_Menu(7);
 		scanf("%s", Chave);
-		Chave[7] = '\0';
+		Chave[8] = '\0';
 
 		for(i=0; i<conta_chaves_novas; i++){
 			if((Chave[0] == chaves_novas[i][0]) && (Chave[1] == chaves_novas[i][1]) && (Chave[2] == chaves_novas[i][2])){
@@ -359,7 +360,7 @@ int main (){
 			printf("\n\nArquivo no final da execução:\n\n");
 			
 			for(k = 0; k<conta_chaves_novas; k++){
-				for(i=0; i<7; i++){		
+				for(i=0; i<8; i++){		
 					fprintf(fpw2, "%c", chaves_novas[k][i]);
 					
 				}
@@ -375,7 +376,7 @@ int main (){
 				for(i=0; i<8; i++){
 					Chave[i] = indice_prim[k][i];
 				}
-				Chave[7] = '\0';
+				Chave[8] = '\0';
 				pos = arvoreb_find(tree, Chave);
 				if((Chave[0] != 0) && (Chave[3] != 0)){ 
 					fprintf(fpresult, "\n\n%s\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",
@@ -389,7 +390,7 @@ int main (){
 				for(i=0; i<8; i++){
 					Chave[i] = chaves_novas[k][i];
 				}
-				Chave[7] = '\0';
+				Chave[8] = '\0';
 				pos = arvoreb_find(tree, Chave);
 				if((Chave[0] != 0) && (Chave[3] != 0)){ 
 					fprintf(fpresult, "\n\n%s\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",

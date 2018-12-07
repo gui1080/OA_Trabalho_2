@@ -26,6 +26,8 @@ Dados* New_data(char* Chave, struct Aluno pessoas) {
   Dados *p = malloc(sizeof(Dados));
 
   strcpy(p->Chave, Chave);
+  p->Chave[8] = '\0';
+  //printf("Chave adicionada eh: %s\n", p->Chave);
   strcpy(p->pessoas.nome, pessoas.nome);
   strcpy(p->pessoas.matricula, pessoas.matricula);
   strcpy(p->pessoas.Curso, pessoas.Curso);
