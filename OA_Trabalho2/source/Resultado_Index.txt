@@ -1,75 +1,175 @@
 Chave: CDT6236 representa as seguintes informações:
 
-Nome: Carlos Dias Takase            Matricula: 62364Curso: EM Turma: 
+Nome: Carlos Dias Takase           
+Matricula:62364
+Curso: EM
+Turma: A
+
 Chave: SSS7666 representa as seguintes informações:
 
-Nome: Samuel Silverio dos Santos    Matricula: 76667Curso: EM Turma: 
+Nome: Samuel Silverio dos Santos   
+Matricula:76667
+Curso: EM
+Turma: A
+
 Chave: DMM2998 representa as seguintes informações:
 
-Nome: Diego Marar Moreno            Matricula: 29981Curso: EC Turma: 
+Nome: Diego Marar Moreno           
+Matricula:29981
+Curso: EC
+Turma: A
+
 Chave: THP3397 representa as seguintes informações:
 
-Nome: Thiago Henrique Parra         Matricula: 33977Curso: EC Turma: 
+Nome: Thiago Henrique Parra        
+Matricula:33977
+Curso: EC
+Turma: B
+
 Chave: MB12997 representa as seguintes informações:
 
-Nome: Miguel Bianchini              Matricula: 12997Curso: CC Turma: 
+Nome: Miguel Bianchini             
+Matricula:12997
+Curso: CC
+Turma: A
+
 Chave: PNV5519 representa as seguintes informações:
 
-Nome: Paulo Nallin Violin           Matricula: 55191Curso: EC Turma: 
+Nome: Paulo Nallin Violin          
+Matricula:55191
+Curso: EC
+Turma: A
+
 Chave: IRA2299 representa as seguintes informações:
 
-Nome: Igor Ribeiro de Assis         Matricula: 22998Curso: EC Turma: 
+Nome: Igor Ribeiro de Assis        
+Matricula:22998
+Curso: EC
+Turma: A
+
 Chave: BSB8129 representa as seguintes informações:
 
-Nome: Bernardo Silva Bezerra        Matricula: 81293Curso: CC Turma: 
+Nome: Bernardo Silva Bezerra       
+Matricula:81293
+Curso: CC
+Turma: A
+
 Chave: WFC4465 representa as seguintes informações:
 
-Nome: William Fernandes Crepaldi    Matricula: 44654Curso: CC Turma: 
+Nome: William Fernandes Crepaldi   
+Matricula:44654
+Curso: CC
+Turma: A
+
 Chave: NRJ8234 representa as seguintes informações:
 
-Nome: Norberto Rocatto Junior       Matricula: 82344Curso: EC Turma: 
+Nome: Norberto Rocatto Junior      
+Matricula:82344
+Curso: EC
+Turma: B
+
 Chave: GVP8765 representa as seguintes informações:
 
-Nome: Giulia Villarino Pinto        Matricula: 87658Curso: EC Turma: 
+Nome: Giulia Villarino Pinto       
+Matricula:87658
+Curso: EC
+Turma: B
+
 Chave: UGF7183 representa as seguintes informações:
 
-Nome: Ubiratan Gouvea Franchi       Matricula: 71831Curso: CC Turma: 
+Nome: Ubiratan Gouvea Franchi      
+Matricula:71831
+Curso: CC
+Turma: A
+
 Chave: RBG3635 representa as seguintes informações:
 
-Nome: Ricardo Baccetti Garcia       Matricula: 36352Curso: EC Turma: 
+Nome: Ricardo Baccetti Garcia      
+Matricula:36352
+Curso: EC
+Turma: B
+
 Chave: KRC8656 representa as seguintes informações:
 
-Nome: Keiko Rezende Campos Falcao   Matricula: 86567Curso: EM Turma: 
+Nome: Keiko Rezende Campos Falcao  
+Matricula:86567
+Curso: EM
+Turma: A
+
 Chave: EJA7865 representa as seguintes informações:
 
-Nome: Enio Jacintho de Almeida      Matricula: 78651Curso: EM Turma: 
+Nome: Enio Jacintho de Almeida     
+Matricula:78651
+Curso: EM
+Turma: B
+
 Chave: HCA3552 representa as seguintes informações:
 
-Nome: Haroldo Campos de Almeida     Matricula: 35522Curso: EC Turma: 
+Nome: Haroldo Campos de Almeida    
+Matricula:35522
+Curso: EC
+Turma: B
+
 Chave: OCD6644 representa as seguintes informações:
 
-Nome: Olivia Cavalcanti Drummond    Matricula: 66441Curso: EC Turma: 
+Nome: Olivia Cavalcanti Drummond   
+Matricula:66441
+Curso: EC
+Turma: A
+
 Chave: LNS2431 representa as seguintes informações:
 
-Nome: Leonardo Nunes de Souza       Matricula: 24312Curso: EM Turma: 
+Nome: Leonardo Nunes de Souza      
+Matricula:24312
+Curso: EM
+Turma: B
+
 Chave: JCM3127 representa as seguintes informações:
 
-Nome: Julio Costa Miguel            Matricula: 31272Curso: EC Turma: 
+Nome: Julio Costa Miguel           
+Matricula:31272
+Curso: EC
+Turma: B
+
 Chave: YTC2426 representa as seguintes informações:
 
-Nome: Yasmin Torres de Carvalho Bra Matricula: 24262Curso: CC Turma: 
+Nome: Yasmin Torres de Carvalho Bra
+Matricula:24262
+Curso: CC
+Turma: A
+
 Chave: QBS5677 representa as seguintes informações:
 
-Nome: Quiterio Bacallado Sanchez    Matricula: 56776Curso: CC Turma: 
+Nome: Quiterio Bacallado Sanchez   
+Matricula:56776
+Curso: CC
+Turma: B
+
 Chave: ZSM2858 representa as seguintes informações:
 
-Nome: Zelia Silva Marshall          Matricula: 28583Curso: CC Turma: 
+Nome: Zelia Silva Marshall         
+Matricula:28583
+Curso: CC
+Turma: B
+
 Chave: FMC4843 representa as seguintes informações:
 
-Nome: Fernanda Machado Carreiro     Matricula: 48436Curso: EC Turma: 
+Nome: Fernanda Machado Carreiro    
+Matricula:48436
+Curso: EC
+Turma: A
+
 Chave: XAC9877 representa as seguintes informações:
 
-Nome: Xavier Augusto de Castro Neve Matricula: 98776Curso: EC Turma: 
+Nome: Xavier Augusto de Castro Neve
+Matricula:98776
+Curso: EC
+Turma: A
+
 Chave: VSS2766 representa as seguintes informações:
 
-Nome: Vania Schowantz Silva         Matricula: 27667Curso: CC Turma: 
+Nome: Vania Schowantz Silva        
+Matricula:27667
+Curso: CC
+Turma: B
+

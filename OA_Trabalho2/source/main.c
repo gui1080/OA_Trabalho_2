@@ -134,7 +134,7 @@ int main (){
 		for(i=0 ; i<3; i++){
 			pessoas.Curso[i] = Curso_texto[k][i];
 		}
-		strcpy(pessoas.Turma, turma_aux[k]);
+		//strcpy(pessoas.Turma, turma_aux[k]);
 		
 		//pessoas.Turma[0] = turma_aux[k][0];
 		//pessoas.Turma[1] = turma_aux[k][1];
@@ -157,6 +157,7 @@ int main (){
 		//pessoas.matricula[5] = '\0';
 		//pessoas.Curso[2] = ' ';
 
+		strcpy(pessoas.Turma, turma_aux[k]);
 		printf("!!!!!PESSOAS.TURMA = %s!!!!", pessoas.Turma);
 		
 		printf("Nome: %s\n", pessoas.nome);
@@ -169,7 +170,7 @@ int main (){
 
 		pos = Insert_arvoreb(tree, indice_prim[k], pessoas);
 		fprintf(fpw, "Chave: %s representa as seguintes informações:\n\n", indice_prim[k]);
-		fprintf(fpw, "Nome: %s Matricula: %sCurso: %s Turma: %s\n",pessoas.nome, pessoas.matricula, pessoas.Curso, pessoas.Turma);
+		fprintf(fpw, "Nome: %s\nMatricula:%s\nCurso: %s\nTurma: %s\n\n",pessoas.nome, pessoas.matricula, pessoas.Curso, pessoas.Turma);
 		//Linha_Index++;
 		
 	}
@@ -254,7 +255,7 @@ int main (){
       		printf("Matricula\n");
       		scanf("%[^\n]", pessoas.matricula);
       		getchar();
-      		strcpy(pessoas_novas[conta_chaves_novas].matricula, pessoas.nome);
+      		strcpy(pessoas_novas[conta_chaves_novas].matricula, pessoas.matricula);
       		printf("%s\n", pessoas.matricula);
       		printf("Curso\n");
       		scanf("%s", pessoas.Curso);
@@ -362,8 +363,10 @@ int main (){
 					fprintf(fpw2, "%c", chaves_novas[k][i]);
 					
 				}
+				printf("\033[0;32m");
 				printf("Nova chave adicionada nesta execução:\n");
 				printf("Nome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",pessoas_novas[k].nome, pessoas_novas[k].matricula, pessoas_novas[k].Curso, pessoas_novas[k].Turma);
+				printf("\033[0m");
 				fprintf(fpw2, "\n");
 
 			} // printando novos indices e mostrando o que teve de novo
