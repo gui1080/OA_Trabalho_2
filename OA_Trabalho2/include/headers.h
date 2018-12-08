@@ -1,13 +1,3 @@
-/**
- * @file headers.h
- *
- * @brief Arquivo com as declarações das funções auxiliares da manipulação das Listas 
- *
- * @author Guilherme Braga e Gabriel Matheus
- *
- */
-
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -17,17 +7,12 @@
 Feito por:
 Gabriel Matheus da Rocha de Oliveira, 17/0103498
 Guilherme Braga Pinto, 17/0162290
-Last Update: 03/11/2018
+Last Update: 08/12/2018
 UnB- CIC
 */
 
 //--------------------------------------------------------------------------------------------
 
-/**
- * @brief Mostra menus, um atalho de prints.
- * 
- * @param int opt - Descreve qual menu se mostrará.
- */
 
 struct Aluno
 {
@@ -50,22 +35,23 @@ typedef struct Nodulo {
 	Dados **Chaves;
 } Nodulo;
 
-typedef struct node_position_t {
+typedef struct node_posicao_t {
 	Nodulo *node;
 	int index;
-} node_position;
+} node_posicao;
 
 typedef struct Arvore_B {
 	int order;
 	Nodulo *raiz;
 } BTree;
 
+//--------------------------------------------------------------------------------------------
 
 BTree* New_tree(int order);
 
 Nodulo* New_node(int order, bool Folha);
 
-node_position Insert_arvoreb(BTree* bt, char *Chave, struct Aluno pessoas);
+node_posicao Insert_arvoreb(BTree* bt, char *Chave, struct Aluno pessoas);
 
 Dados* New_data(char *Chave, struct Aluno pessoas); 
 
@@ -75,29 +61,29 @@ void Deslocate_keys_up(Nodulo *to, Nodulo *from, int beg, int end, int padding_t
 
 void Deslocate_keys_down(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
 
-void Deslocate_children_up(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
+void Deslocate_filho_up(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
 
-void Deslocate_children_down(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
+void Deslocate_filho_down(Nodulo *to, Nodulo *from, int beg, int end, int padding_to, int padding_from);
 
-node_position Insert_arvoreb_nonfull(Nodulo * node, Dados *pair, int order);
+node_posicao Insert_arvoreb_nonfull(Nodulo * node, Dados *pair, int order);
 
-node_position New_node_position(Nodulo *node, int index);
+node_posicao New_node_posicao(Nodulo *node, int index);
 
 bool Find_node_Chave(Nodulo *node, char* Chave, int *pos);
 
-node_position arvoreb_find(BTree* bt,char* Chave);
+node_posicao arvoreb_find(BTree* bt,char* Chave);
 
-node_position Find_node_arvoreb(Nodulo* node, char *Chave);
+node_posicao Find_node_arvoreb(Nodulo* node, char *Chave);
 
 int compara_string(char *string1, char* string2);
 
-node_position arvoreb_remove(BTree* bt, char* Chave);
+node_posicao arvoreb_remove(BTree* bt, char* Chave);
 
-node_position Remove_no_arvoreb(Nodulo *node, char *Chave, int order);
+node_posicao Remove_no_arvoreb(Nodulo *node, char *Chave, int order);
 
-node_position Find_node_min(Nodulo *node); 
+node_posicao Find_node_min(Nodulo *node); 
 
-node_position Find_node_max(Nodulo *node);
+node_posicao Find_node_max(Nodulo *node);
 
 Dados* Copy_data(Dados *p);
 

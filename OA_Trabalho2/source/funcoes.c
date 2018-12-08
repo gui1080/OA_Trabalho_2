@@ -1,12 +1,3 @@
-/**
- * @file funcoes.c
- *
- * @brief Arquivo com as funções auxiliares da manipulação das Listas 
- *
- * @author Guilherme Braga e Gabriel Matheus
- *
- */
-
 #include <stdlib.h> 
 #include <stdio.h>
 #include <string.h>
@@ -16,7 +7,7 @@
 Feito por:
 Guilherme Braga Pinto
 Gabriel Matheus da Rocha de Oliveira
-Last Update: xx/xx/2018
+Last Update: 08/12/2018
 UnB
 */
 
@@ -55,14 +46,18 @@ void Escreve_Menu(int opt){
 	printf("\033[0m");	
 }
 
+// ------------------------------------------------------------------------------------
+
 BTree* New_tree(int order) {
   BTree* bt = malloc(sizeof(BTree));
 
-  bt->order = order;
+  bt->order = order;                     //cria arvore
   bt->raiz = New_node(order, true);
 
   return bt;
 }
+
+// ------------------------------------------------------------------------------------
 
 Nodulo* New_node(int order, bool Folha) {
   Nodulo *n = malloc(sizeof(Nodulo));
@@ -70,48 +65,57 @@ Nodulo* New_node(int order, bool Folha) {
   n->n_Chaves = 0;
   n->Folha = Folha;
   n->Chaves = malloc((2*order-1) * sizeof(Dados));
-  n->filhos = malloc((2*order) * sizeof(Nodulo*));
+  n->filhos = malloc((2*order) * sizeof(Nodulo*));     //da malloc nos filhos da nova arvore
 
   return n;
 }
 
+// ------------------------------------------------------------------------------------
 
-node_position New_node_position(Nodulo *node, int index) {
-  node_position node_pos = {.node = node, .index = index};
+node_posicao New_node_posicao(Nodulo *node, int index) {
+  node_posicao node_pos = {.node = node, .index = index};     //novo filho em posiçao
   return node_pos;
 }
+
+// ------------------------------------------------------------------------------------
 
 bool Find_node_Chave(Nodulo *node, char* Chave, int *pos) {
   *pos = 0;
 
   while ((*pos) < node->n_Chaves && compara_string(Chave, node->Chaves[(*pos)]->Chave) == 1) {
-    (*pos)++;
+    (*pos)++;        // itera pela arvore incrementando pos, para achar o no
   }
 
   return (*pos) < node->n_Chaves && compara_string(Chave, node->Chaves[(*pos)]->Chave) == 0;
 
 }
 
-node_position arvoreb_find(BTree* bt,char* Chave){
+// ------------------------------------------------------------------------------------
 
-  return Find_node_arvoreb(bt->raiz, Chave);
+node_posicao arvoreb_find(BTree* bt,char* Chave){
+
+  return Find_node_arvoreb(bt->raiz, Chave);      //chamada de funcao
 }
 
-node_position Find_node_arvoreb(Nodulo* node, char *Chave){
+// ------------------------------------------------------------------------------------
+
+node_posicao Find_node_arvoreb(Nodulo* node, char *Chave){
 
   int pos;
   if (Find_node_Chave(node, Chave, &pos)) {
-    return New_node_position(node, pos);
+    return New_node_posicao(node, pos);
   }
   else {
     if (node->Folha) {
-      return New_node_position(NULL, -1);
+      return New_node_posicao(NULL, -1);    //define se ha o que se procura, se retorna o que foi pedido se possivel
     }
     else {
       return Find_node_arvoreb(node->filhos[pos], Chave);
     }
   }
 }
+
+// ------------------------------------------------------------------------------------
 
 int compara_string(char *string1, char* string2){
 int result;
@@ -140,3 +144,4 @@ for(int i = 0; i < 8; i++){
 return result;
 }
 
+// ------------------------------------------------------------------------------------

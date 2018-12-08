@@ -1,12 +1,3 @@
-/**
- * @file main.c
- *
- * @brief Arquivo com a manipulação das Listas 
- *
- * @author Guilherme Braga e Gabriel Matheus.
- *
- */
-
 //--------------------------------------------------------------------------------------------
 
 #include <stdlib.h>
@@ -20,7 +11,7 @@
 Feito por:
 Gabriel Matheus da Rocha de Oliveira, 17/0103498
 Guilherme Braga Pinto, 17/0162290
-Last Update: 03/11/2018
+Last Update: 08/12/2018
 UnB- CIC
 */
 
@@ -65,7 +56,7 @@ int main (){
 	char matricula_texto[num][6];
 	char Curso_texto[num][3];
 	char turma_aux[num][2];
-	node_position pos;
+	node_posicao pos;
 	
 
 	int l = 0;
@@ -90,7 +81,7 @@ int main (){
 		fgets(linha, 108, fp);
 		linha[108] = '\0';
 
-		for(i = 0; i<108; i++){
+		for(i = 0; i<108; i++){                          // vai tudo para uma nova struct, armazenaremos o que for adicionado no futuro
 			printf("%c", linha[i]);
 		}
 		printf("\n");
@@ -119,7 +110,7 @@ int main (){
 			indice_prim[k][i+l] = linha[i+41];
 		}
 		matricula_texto[k][5] = '\0';
-		turma_aux[k][0] = linha[52];
+		turma_aux[k][0] = linha[52];                       // definimos cada item da struct de aluno
 		turma_aux[k][1] = '\0';
 
 		nome_texto[k][29] = '\0';
@@ -163,7 +154,7 @@ int main (){
 		printf("Nome: %s\n", pessoas.nome);
 		printf("Matricula: %s\n", pessoas.matricula);
 		printf("Curso: %s\n", pessoas.Curso);
-		printf("Turma: %s\n", turma_aux[k]);
+		printf("Turma: %s\n", turma_aux[k]);                 // ao final. confirmamos e printamos
 		
 
 
@@ -212,13 +203,13 @@ int main (){
 			Escreve_Menu(4);
 			scanf("%s", Chave);
 			Chave[8] = '\0'; 
-			printf("chave a ser buscada: %s\n", Chave);
+			printf("Chave a ser buscada: %s\n", Chave);
 			pos = arvoreb_find(tree, Chave);
 
 		if (pos.node == NULL) {
 
 			printf("\033[0;31m");
-			printf("\nA CHAVE %s não foi encontrada na B-Tree\n", Chave);
+			printf("\nA CHAVE %s não foi encontrada na B-Tree\n", Chave);         // recuperamos a chave, retornamos quando possivel
 			printf("\033[0m");
 			}
 		else {
@@ -243,13 +234,11 @@ int main (){
 			for(k=0; k<8; k++){
 				chaves_novas[conta_chaves_novas][k] = Chave[k];
 			}
-			//Chave[7] = '\0';  
-
-			Escreve_Menu(6);  //adicionaremos um registro
+		
+			Escreve_Menu(6);                //adicionaremos um registro
       		printf("Nome:\n");
-      		//pessoas.nome[strlen(pessoas.nome)] = ' ';
       		memset(pessoas.nome, ' ', sizeof(pessoas.nome));
-      		scanf("%[^\n]", pessoas.nome);            // coletamos informaões e a atribuimos à uma estrutura auxiliar
+      		scanf("%[^\n]", pessoas.nome);                           // coletamos informaões e a atribuimos à uma estrutura auxiliar
       		getchar();
       		strcpy(pessoas_novas[conta_chaves_novas].nome, pessoas.nome);
       		printf("%s\n", pessoas.nome);
@@ -290,17 +279,17 @@ int main (){
 			// 	}
 			//fclose(fpw);
 			conta_chaves_novas++;
-			// !!!!!!!!!!!!!!!!!!!!!!!!
+			// mantemos o numero de chaves novas 
 
 		}
 
 //--------------------------------REMOVENDO DA ARVORE B---------------------------------------
 
 		if(option == 3){
-		//fpw = fopen ("Resultado_Index.txt", "w");
+
 		Escreve_Menu(7);
 		scanf("%s", Chave);
-		Chave[8] = '\0';
+		Chave[8] = '\0';           // tentamos ver se a chave a ser retirada pertence as chaves novas
 
 		for(i=0; i<conta_chaves_novas; i++){
 			if((Chave[0] == chaves_novas[i][0]) && (Chave[1] == chaves_novas[i][1]) && (Chave[2] == chaves_novas[i][2])){
@@ -312,6 +301,7 @@ int main (){
 			memset(pessoas_novas[i].matricula, ' ', 6);
 			memset(pessoas_novas[i].nome, ' ', 30); 
 			conta_chaves_novas--;
+			// mantemos o numero de chaves novas
 			}
 		}
 		 
@@ -345,7 +335,7 @@ int main (){
 		//fclose(fpw);
 		}
 		
-		if(option == 4){
+		if(option == 4){        // fim de execução
 
 //--------------------------------PRINTANDO AS CHAVES---------------------------------------
 			for(k = 0; k<num; k++){
@@ -357,11 +347,11 @@ int main (){
 				fprintf(fpw2, "\n"); 
 			} // printando indices
 
-			printf("\n\nArquivo no final da execução:\n\n");
+			printf("\n\nFinal da execução!\n\n");
 			
 			for(k = 0; k<conta_chaves_novas; k++){
 				for(i=0; i<8; i++){		
-					fprintf(fpw2, "%c", chaves_novas[k][i]);
+					fprintf(fpw2, "%c\n\n", chaves_novas[k][i]);
 					
 				}
 				printf("\033[0;32m");
@@ -386,20 +376,21 @@ int main (){
 
 			} // printando da arvore original
 
-			for(k = 0; k<conta_chaves_novas; k++){
-				for(i=0; i<8; i++){
-					Chave[i] = chaves_novas[k][i];
-				}
-				Chave[8] = '\0';
-				pos = arvoreb_find(tree, Chave);
-				if((Chave[0] != 0) && (Chave[3] != 0)){ 
-					fprintf(fpresult, "\n\n%s\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",
+			if(conta_chaves_novas != 0){
+				for(k = 0; k<conta_chaves_novas; k++){
+					for(i=0; i<8; i++){
+						Chave[i] = chaves_novas[k][i];
+					}
+					Chave[8] = '\0';
+					pos = arvoreb_find(tree, Chave);
+					if((Chave[0] != 0) && (Chave[3] != 0)){ 
+						fprintf(fpresult, "\n\n%s\nnome: %s\nmatricula: %s\ncurso: %s\nturma: %s\n",
  	            			Chave, pos.node->Chaves[pos.index]->pessoas.nome, pos.node->Chaves[pos.index]->pessoas.matricula,
 		        			pos.node->Chaves[pos.index]->pessoas.Curso, pos.node->Chaves[pos.index]->pessoas.Turma);
-					fprintf(fpresult, "\n");
-				}
-			} // printando o que temos de novo
-
+						fprintf(fpresult, "\n");
+					}
+				} // printando o que temos de novo
+			}
 //--------------------------------PRINTANDO AS CHAVES---------------------------------------
 
 
@@ -412,36 +403,6 @@ int main (){
 
 	}
 
-/*
-	for(k = 0; k<num; k++){
-		for(i=0; i<41; i++){
-
-			printf("%c", nome_texto[k][i]);
-
-		}
-		printf("\n");
-	}
-
-	/*
-	for(k = 0; k<num; k++){
-		for(i=0; i<7; i++){
-
-			printf("%c", matricula_texto[k][i]);
-
-		}
-		printf("\n");
-	}
-
-	for(k = 0; k<num; k++){
-		for(i=0; i<4; i++){
-
-			printf("%c", curso_texto[k][i]);
-
-		}
-	
-		printf("\n");
-		*/
-	
 		
    	arvoreb_delete_h(tree);
   	fclose(fpw2);
