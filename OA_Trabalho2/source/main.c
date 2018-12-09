@@ -125,28 +125,9 @@ int main (){
 		for(i=0 ; i<3; i++){
 			pessoas.Curso[i] = Curso_texto[k][i];
 		}
-		//strcpy(pessoas.Turma, turma_aux[k]);
-		
-		//pessoas.Turma[0] = turma_aux[k][0];
-		//pessoas.Turma[1] = turma_aux[k][1];
-
-//		if(turma_aux[0] == 'A'){
-//			pessoas.Turma[0] = 'A';
-//		}
-//		else{
-//			pessoas.Turma[0] = 'B';
-//		}
-		
 		pessoas.Curso[3] = '\0';
 
-		//strcpy(pessoas.nome, nome_texto[k]);
-		//strcpy(pessoas.matricula, matricula_texto[k]); 
-		//strcpy(pessoas.Curso, Curso_texto[k]); 
-
 		indice_prim[k][8] = '\0';
-		//pessoas.nome[30] = '\0';
-		//pessoas.matricula[5] = '\0';
-		//pessoas.Curso[2] = ' ';
 
 		strcpy(pessoas.Turma, turma_aux[k]);
 		printf("!!!!!PESSOAS.TURMA = %s!!!!", pessoas.Turma);
@@ -162,7 +143,7 @@ int main (){
 		pos = Insert_arvoreb(tree, indice_prim[k], pessoas);
 		fprintf(fpw, "Chave: %s representa as seguintes informações:\n\n", indice_prim[k]);
 		fprintf(fpw, "Nome: %s\nMatricula:%s\nCurso: %s\nTurma: %s\n\n",pessoas.nome, pessoas.matricula, pessoas.Curso, pessoas.Turma);
-		//Linha_Index++;
+		
 		
 	}
 	fclose(fp);
@@ -226,7 +207,7 @@ int main (){
 //--------------------------------INSERINDO NA ARVORE B---------------------------------------
 
 		if(option == 2){
-			//fpw = fopen ("Resultado_Index.txt", "w");
+			
 			Escreve_Menu(5);
 			scanf("%s", Chave);
 			getchar();
@@ -261,25 +242,8 @@ int main (){
       		printf("%s", pessoas.Turma);
 
 			pos = Insert_arvoreb(tree, Chave, pessoas);
-			//Linha_Index++;	
-			//strcpy(indice_prim[Linha_Index], Chave);
-			
-			// 	int cont;
-			// 	for(cont = 0; cont < Linha_Index; cont++){
-			// 	pos = arvoreb_find(tree, indice_prim[cont]);
-			// 	if (pos.node == NULL) {
-			// 	printf("A CHAVE %s não foi encontrada na B-Tree\n", indice_prim[cont]);
-			// }
-			// else {
-			// 	printf("A CHAVE %s foi encontrada associada a linha '%d'\n",
-			// 	         indice_prim[cont], pos.node->Chaves[pos.index]->linha);
-			// 	fprintf(fpw, "A CHAVE %s foi encontrada associada a linha '%d'\n",
-			// 	         indice_prim[cont], pos.node->Chaves[pos.index]->linha);
-			// }
-			// 	}
-			//fclose(fpw);
-			conta_chaves_novas++;
-			// mantemos o numero de chaves novas 
+
+			conta_chaves_novas++;            // inserimos e incrementamos o contador de pessoas novas
 
 		}
 
@@ -329,10 +293,10 @@ int main (){
 			printf("\033[0;32m");
 			printf("\nA CHAVE %s foi removida com sucesso\n", Chave);
 			printf("\033[0m");
-			//fprintf(fpw, "A CHAVE %s foi removida com sucesso\n", Chave);
+			
 			}
 
-		//fclose(fpw);
+		
 		}
 		
 		if(option == 4){        // fim de execução
